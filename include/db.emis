@@ -7,8 +7,11 @@ Connect the SQL and EMIS database
     // Connect to SQL
     $host = "localhost";
     $user = "root";
-    $password = "root";
-    $con = mysqli_connect($host, $user, $password);
+    $password = "cs3773";
+    $database = "emis_general";
+
+
+    $con = mysqli_connect($host, $user, $password, $database);
     if (!$con) {
         exit('Connect Error (' . mysqli_connect_errno() . ') '
                 . mysqli_connect_error());
@@ -17,6 +20,6 @@ Connect the SQL and EMIS database
     mysqli_set_charset($con, 'utf-8');
 
     //Select EMIS database
-    mysqli_select_db($con, "EMIS");
+    //mysqli_select_db($con, "EMIS");
 ?>
 
