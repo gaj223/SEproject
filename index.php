@@ -20,7 +20,12 @@
         
     </head>
     <body>
-        
+        <?php
+            if(isset($_GET['logout'])){
+                session_unset();
+                session_destroy();
+            }
+        ?>
         <h1 style="font-size:70px;"> 
             <img src="Symbol.png" width="60" height="60">
             EMIS <hr>  

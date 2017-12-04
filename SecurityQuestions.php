@@ -20,7 +20,22 @@
     </head>
     <body>
         <?php 
-            include 'include/db.emis';
+            //include 'include/db.emis';
+            
+            // Connect to SQL
+            $host = "localhost";
+            $user = "root";
+            $password = "root";
+            $database = "EMIS";
+            $con = mysqli_connect($host, $user, $password, $database);
+            
+            if (!$con) {
+                exit('Connect Error (' . mysqli_connect_errno() . ') '
+                    . mysqli_connect_error());
+            }
+            
+            //set the default client character set
+            mysqli_set_charset($con, 'utf-8');
             
             $role = htmlentities($_POST["role2"]);
             $ans1 = htmlentities($_POST["ans1"]);
