@@ -82,7 +82,7 @@
             Menu: <br>
             <a href="PersonalInfo.php?patientid=<?php echo $pass['PatientID']; ?>"> Personal Information</a> <br>
             <a href="InsuranceInfo.php"> Insurance Information</a> <br>
-            <a href="Appointments.php"> Appointments</a> <br> 
+            <a href="appointments/appointment.php"> Appointments</a> <br> 
         </p>
        
     </body>
