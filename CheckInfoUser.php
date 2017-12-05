@@ -21,7 +21,10 @@
         </style>
     </head>
     <body>
-        
+        <h1 style="font-size:70px;"> 
+            <img src="Symbol.png" width="60" height="60">
+            EMIS <hr>  
+        </h1>
         <?php 
             //include 'include/db.emis';
             // Connect to SQL
