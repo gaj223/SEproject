@@ -13,7 +13,18 @@ and open the template in the editor.
         <h1 style="color:White;font-size:60px;">Personal Information</h1>
         
         <?php
-        include 'db.emis';
+        //include 'db.emis';
+        // Connect to SQL
+            $host = "localhost";
+            $user = "root";
+            $password = "cs3773";
+            $database = "EMIS";
+            $con = mysqli_connect($host, $user, $password, $database);
+            
+        if (!$con) {
+             exit('Connect Error (' . mysqli_connect_errno() . ') '
+                    . mysqli_connect_error());
+        }
         
         $patientid = $_GET['patientid'];
         //echo "$patientid";

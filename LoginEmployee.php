@@ -31,7 +31,7 @@ Validates the employee and create the Welcome page for the employee
             // Connect to SQL
             $host = "localhost";
             $user = "root";
-            $password = "root";
+            $password = "cs3773";
             $database = "EMIS";
             $con = mysqli_connect($host, $user, $password, $database);
             
