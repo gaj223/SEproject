@@ -70,7 +70,7 @@
             // enter personal information
             $sql = "INSERT INTO PatientPersonalInfo VALUES ( {$ID}, '{$first}' ,"
             . "'{$last}' , '{$birth}' , '{$address}' , '{$user}', '{$phone}' , "
-            . "{$ssn} , '{$gender}', '{$ecname}', '{$ecphone}' , '{$ecrelation}' , '{$mstatus}');" ; 
+            . "{$ssn} , '{$gender}', '{$ecname}', '{$ecphone}' , '{$ecrelation}' , '{$mstatus}', 'No', 0);" ; 
             $personal = mysqli_query($con, $sql);
             if (!$personal) {
 		die('Could not insert Personal Information: ' . mysqli_error($con));

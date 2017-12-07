@@ -45,15 +45,17 @@
             $new = htmlentities($_POST["new"]);
             if($role == "Patient"){
                 $patient = mysqli_query($con, "UPDATE PatientLogin SET PassWord='" . $new . "' WHERE PatientID='" . $ID . "'");
-                
+                mysqli_query($con, "UPDATE PatientLogin SET Locked='No' WHERE PatientID='" . $ID . "'");
+                mysqli_query($con, "UPDATE PatientLogin SET attempts= '0' WHERE Email='" . $user . "'");
                 echo 'Password Changed';
                 
                 // Free mysql query
                 mysqli_free_result($patient);
             }else{
                 
-                $employee = mysqli_query($con, "SELECT EmployeeLogin SET PassWord='" . $new . "' WHERE EmployeeID='" . $ID . "'");
-               
+                $employee = mysqli_query($con, "UPDATE EmployeeLogin SET Password='" . $new . "' WHERE EmployeeID='" . $ID . "'");
+                mysqli_query($con, "UPDATE EmployeeLogin SET Locked='No' WHERE EmployeeID='" . $ID . "'");
+                mysqli_query($con, "UPDATE EmployeeLogin SET attempts= '0' WHERE Email='" . $user . "'");
                 echo 'Password Changed';
                 
                 // Free mysql query
