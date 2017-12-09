@@ -22,45 +22,41 @@
     <body>
         
         <h1 style="font-size:40px;"> 
-            <img src="Symbol.png" width="60" height="60">
+            <img src="../Symbol.png" width="60" height="60">
             Create New Patient Account <hr>  
         </h1>
         <p>Personal Information: </p>
         <form action="InsertData.php" method="POST">
             <br>
-            <div><label for="ID">Patient ID: 
-            <input type="number" name="ID" id="ID"></label>
-            </div>
-            <br>
-            <div><label for="gender">Gender <br>:
-            <input type="radio" name="gender" value="Male" checked> Male<br>
+            <div><label for="gender">Gender:
+            <input type="radio" name="gender" value="Male" checked> Male 
             <input type="radio" name="gender" value="Female"> Female<br>
             </div>
-            <div><label for="first">First Name: 
+            <div><label for="first">First Name: 		
             <input type="text" name="first" id="first"></label>
             </div>
-            <div><label for="last">Last Name:
+            <div><label for="last">Last Name:			
             <input type="text" name="last" id="last"></label>
             </div>
-            <div><label for="birth">Date of Birth:
+            <div><label for="birth">Date of Birth:		
                     <input type="date" name="birth" id="birth"></label>
             </div>
-            <div><label for="mstatus">Marital Status:
+            <div><label for="mstatus">Marital Status:		
                     <input type="text" name="mstatus" id="mstatus"></label>
             </div>
-            <div><label for="address">Address:
+            <div><label for="address">Address:			
             <input type="text" name="address" id="address"></label>
             </div>
-            <div><label for="email">Email:
+            <div><label for="email">Email:			
             <input type="text" name="email" id="email"></label>
             </div>
-            <div><label for="phone">Phone Number:
+            <div><label for="phone">Phone Number:		
             <input type="text" name="phone" id="phone"></label>
             </div>
-            <div><label for="ssn">Social Security Number:
+            <div><label for="ssn">Social Security Number:	
             <input type="number" name="ssn" id="ssn"></label>
             </div>
-            <div><label for="ecname">Emergency Contact Name :
+            <div><label for="ecname">Emergency Contact Name:	
             <input type="text" name="ecname" id="ecname"></label>
             </div>
             <div><label for="ecphone">Emergency Contact Phone Number:
@@ -71,31 +67,31 @@
             </div>
             <br>
             <p>Insurance Information: </p>
-            <div><label for="company">Company: 
+            <div><label for="company">Company: 	
             <input type="text" name="company" id="company"></label>
             </div>
-            <div><label for="group">Group ID:
+            <div><label for="group">Group ID:	
             <input type="text" name="group" id="group"></label>
             </div>
-            <div><label for="member">Member ID:
+            <div><label for="member">Member ID:	
             <input type="text" name="member" id="member"></label>
             </div>
             <br>
             <p>Login Information: </p>
             <p> Username will be the email.
-            <div><label for="passwrd">Password:
-            <input type="text" name="passwrd" id="passwrd"></label>
+            <div><label for="passwrd">Password:			
+            <input type="password" name="passwrd" id="passwrd"></label>
             </div>
-            <div><label for="SQuest1">Security Question 1:
+            <div><label for="SQuest1">Security Question 1:	
             <input type="text" name="SQuest1" id="SQuest1"></label>
             </div>
-            <div><label for="SAns1">Security Answer 1:
+            <div><label for="SAns1">Security Answer 1:		
             <input type="text" name="SAns1" id="SAns1"></label>
             </div>
-            <div><label for="SQuest2">Security Question 2:
+            <div><label for="SQuest2">Security Question 2:	
             <input type="text" name="SQuest2" id="SQuest2"></label>
             </div>
-            <div><label for="SAns2">Security Answer 2:
+            <div><label for="SAns2">Security Answer 2:		
             <input type="text" name="SAns2" id="SAns2"></label>
             </div>
             <div><input type="submit" value="Submit"></div>
