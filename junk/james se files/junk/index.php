@@ -2,14 +2,6 @@
 <!--
     Creates the Login Page
 -->
-<?php
-    session_start();
-    header('Cache-Control: max-age=900');
-    if (isset($_GET['logout'])) {
-        session_unset();
-        session_destroy();
-    }
-?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -23,11 +15,12 @@
                 background-repeat:no-repeat;
                 background-attachment:fixed;
             }
-
+            
         </style>
-
+        
     </head>
     <body>
+        
         <h1 style="font-size:70px;"> 
             <img src="Symbol.png" width="60" height="60">
             EMIS <hr>  
@@ -38,30 +31,30 @@
         <br>
         <br>
         <p style="text-align:center;"> Patient Login </p>
-        <form style="text-align:center;" action="main/Login.php" method="POST">
+        <form style="text-align:center;" action="Login.php" method="POST">
             <div><label for="user">Username: 
-                    <input type="text" name="user" id="user"></label>
+            <input type="text" name="user" id="user"></label>
             </div>
             <div><label for="passwrd">Password:
-                    <input type="password" name="passwrd" id="passwrd"></label>
+            <input type="password" name="passwrd" id="passwrd"></label>
             </div>
             <div><input type="submit" value="LOG IN"></div>
         </form>
-
+        
         <p style="text-align:center;"> Employee Login </p>
-        <form style="text-align:center;" action="main/LoginEmployee.php" method="POST">
+        <form style="text-align:center;" action="LoginEmployee.php" method="POST">
             <div><label for="user2">Username: 
-                    <input type="text" name="user2" id="user"></label>
+            <input type="text" name="user2" id="user"></label>
             </div>
             <div><label for="passwrd2">Password:
-                    <input type="password" name="passwrd2" id="passwrd"></label>
+            <input type="password" name="passwrd2" id="passwrd"></label>
             </div>
             <div><input type="submit" value="LOG IN"></div>
         </form>
         <p style="text-align:center;">
-            <a href="main/Username.php"> Forgot Username?</a>
+            <a href="Username.php"> Forgot Username?</a>
             <br>
-            <a href="main/Password.php"> Forgot Password?</a>
+            <a href="Password.php"> Forgot Password?</a>
         </p>
     </body>
 </html>
