@@ -21,28 +21,10 @@
         </style>
     </head>
     <body>
-        <h1 style="font-size:70px;"> 
-            <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>  
-        </h1>
+        
         <?php 
-            //include 'include/db.emis';
-            // Connect to SQL
-            $host = "localhost";
-            $user = "root";
-            $password = "cs3773";
-            $database = "EMIS";
-            $con = mysqli_connect($host, $user, $password, $database);
-            
-            if (!$con) {
-                exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-            }
-            
-            //set the default client character set
-            mysqli_set_charset($con, 'utf-8');
-            
-            
+            include 'include/db.emis';
+
             // Check to see if username and password is correct
             $role = htmlentities($_POST["role"]);
             $first =  htmlentities($_POST["first"]);

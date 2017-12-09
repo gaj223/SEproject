@@ -15,30 +15,12 @@
                 background-attachment:fixed;
                 font-size:20px;
             }
-            p {
-                font-size: 15px;
-            }
             
         </style>
     </head>
     <body>
         <?php 
-            //include 'include/db.emis';
-            
-            // Connect to SQL
-            $host = "localhost";
-            $user = "root";
-            $password = "cs3773";
-            $database = "EMIS";
-            $con = mysqli_connect($host, $user, $password, $database);
-            
-            if (!$con) {
-                exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-            }
-            
-            //set the default client character set
-            mysqli_set_charset($con, 'utf-8');
+            include 'include/db.emis';
             
             $role = htmlentities($_POST["role2"]);
             $ans1 = htmlentities($_POST["ans1"]);
@@ -73,29 +55,17 @@
             }
             
         ?>
-        <h1 style="font-size:70px;"> 
-            <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>  
-        </h1>
+        
         <form action="ChangePW.php" method="POST">
             <div><label for="new">Enter new password: 
-            <input type="text" name="new" id="new" 
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                   title="Must contain at least one number and one uppercase 
-                   and lowercase letter, and at least 8 or more characters"
-                   required> </label>
+            <input type="text" name="new" id="new"></label>
+            </div>
+            <div><label for="new2">Reenter new password:
+            <input type="text" name="new2" id="new2"></label>
             </div>
             <div> <input type="hidden" name="ID" value="<?php echo $ID; ?>"> </div>
             <div> <input type="hidden" name="role" value="<?php echo $role; ?>"> </div>
             <div><input type="submit" value="Submit"></div>
-            <div id="message">
-                <h3>Password must contain the following:</h3>
-                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                <p id="number" class="invalid">A <b>number</b></p>
-                <p id="special" class="invalid">A <b>special character</b></p>
-                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-            </div>
         </form>
     </body>
 </html>

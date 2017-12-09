@@ -5,40 +5,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <style>
-            body {
-                background-color:rgb(21, 118, 221);
-                color:white;
-                background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
-                background-position: right bottom;
-                background-repeat:no-repeat;
-                background-attachment:fixed;
-            }
-            
-        </style>
-        
+        <title>Page Title</title>
     </head>
     <body>
         
         <?php 
         
-            //include 'db.emis';
-        
-            // Connect to SQL
-            $host = "localhost";
-            $user = "root";
-            $password = "cs3773";
-            $database = "EMIS";
-            $con = mysqli_connect($host, $user, $password, $database);
-            
-            if (!$con) {
-                exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-            }
-            
-            //set the default client character set
-            mysqli_set_charset($con, 'utf-8');
+            include 'db.emis';
             
             if ($_POST['fname'] == NULL || $_POST['lname'] == NULL || $_POST['dob'] == NULL){
                 if ($_SESSION['POST'] == null){
@@ -58,7 +31,7 @@
             $employeeid = $_POST['employeeid'];
             
             // check if user is in the database
-            $patient = mysqli_query($con, "SELECT PatientID FROM PatientPersonalInfo WHERE FirstName REGEXP '[[:<:]]{$fname}[[:>:]]' AND LastName REGEXP '[[:<:]]{$lname}[[:>:]]' AND DateOfBirth REGEXP '[[:<:]]{$dob}[[:>:]]'");
+            $patient = mysqli_query($con, "SELECT PatientID FROM patientpersonalinfo WHERE firstname REGEXP '[[:<:]]{$fname}[[:>:]]' AND lastname REGEXP '[[:<:]]{$lname}[[:>:]]' AND dob REGEXP '[[:<:]]{$dob}[[:>:]]'");
             if (mysqli_num_rows($patient) < 1) {
                 if ($_SESSION['POST'] == null){
                     session_start();

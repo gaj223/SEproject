@@ -19,43 +19,25 @@
         </style>
     </head>
     <body>
-        <h1 style="font-size:70px;"> 
-            <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>  
-        </h1>
+        
         <?php 
-            //include 'include/db.emis';
-            // Connect to SQL
-            $host = "localhost";
-            $user = "root";
-            $password = "cs3773";
-            $database = "EMIS";
-            $con = mysqli_connect($host, $user, $password, $database);
-            
-            if (!$con) {
-                exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-            }
-            
-            //set the default client character set
-            mysqli_set_charset($con, 'utf-8');
+            include 'include/db.emis';
             
             $role = htmlentities($_POST["role"]);
             $ID = htmlentities($_POST["ID"]);
             $new = htmlentities($_POST["new"]);
+            $new2 = htmlentities($_POST["new2"]);
             if($role == "Patient"){
                 $patient = mysqli_query($con, "UPDATE PatientLogin SET PassWord='" . $new . "' WHERE PatientID='" . $ID . "'");
-                mysqli_query($con, "UPDATE PatientLogin SET Locked='No' WHERE PatientID='" . $ID . "'");
-                mysqli_query($con, "UPDATE PatientLogin SET attempts= '0' WHERE Email='" . $user . "'");
+                
                 echo 'Password Changed';
                 
                 // Free mysql query
                 mysqli_free_result($patient);
             }else{
                 
-                $employee = mysqli_query($con, "UPDATE EmployeeLogin SET Password='" . $new . "' WHERE EmployeeID='" . $ID . "'");
-                mysqli_query($con, "UPDATE EmployeeLogin SET Locked='No' WHERE EmployeeID='" . $ID . "'");
-                mysqli_query($con, "UPDATE EmployeeLogin SET attempts= '0' WHERE Email='" . $user . "'");
+                $employee = mysqli_query($con, "SELECT EmployeeLogin SET PassWord='" . $new1 . "' WHERE EmployeeID='" . $ID . "'");
+               
                 echo 'Password Changed';
                 
                 // Free mysql query

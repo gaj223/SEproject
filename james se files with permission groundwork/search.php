@@ -1,39 +1,6 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <style>
-            body {
-                background-color:rgb(21, 118, 221);
-                color:white;
-                background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
-                background-position: right bottom;
-                background-repeat:no-repeat;
-                background-attachment:fixed;
-            }
-            
-        </style>
-        
-    </head>
     <body>
         <?php
-        //include 'db.emis';
-        
-        // Connect to SQL
-        $host = "localhost";
-        $user = "root";
-        $password = "cs3773";
-        $database = "EMIS";
-        $con = mysqli_connect($host, $user, $password, $database);
-            
-        if (!$con) {
-            exit('Connect Error (' . mysqli_connect_errno() . ') '
-                   . mysqli_connect_error());
-        }
-            
-        //set the default client character set
-        mysqli_set_charset($con, 'utf-8');
-        
         if ($_GET == NULL){
             session_start();
             $temp = $_SESSION['POST'];
@@ -42,9 +9,17 @@
         }
         $employeeid = $_GET['employeeid'];
         
- 
-        
-        $safety = "SELECT * FROM EmployeeLogin WHERE EmployeeID REGEXP '[[:<:]]{$employeeid}[[:>:]]'";
+        $servername = "localhost";
+        $username = "root";
+        $password = "1234";
+        $dbname = "emis";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        $safety = "SELECT * FROM employeelogin WHERE EmployeeID REGEXP '[[:<:]]{$employeeid}[[:>:]]'";
         $verify = $conn->query($safety);
         $pas = $verify->fetch_assoc();
         ?>

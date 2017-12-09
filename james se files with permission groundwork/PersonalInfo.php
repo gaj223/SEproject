@@ -13,25 +13,22 @@ and open the template in the editor.
         <h1 style="color:White;font-size:60px;">Personal Information</h1>
         
         <?php
-        //include 'db.emis';
-        // Connect to SQL
-            $host = "localhost";
-            $user = "root";
-            $password = "cs3773";
-            $database = "EMIS";
-            $con = mysqli_connect($host, $user, $password, $database);
-            
-        if (!$con) {
-             exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-        }
-        
         $patientid = $_GET['patientid'];
         //echo "$patientid";
         
-        
+        $servername = "localhost";
+        $username = "root";
+        $password = "1234";
+        $dbname = "emis";
 
-        $safety = "SELECT * FROM PatientID WHERE PatientLogin REGEXP '[[:<:]]{$patientid}[[:>:]]'";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+
+        $safety = "SELECT * FROM patientid WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
         $verify = $conn->query($safety);
         $pas = $verify->fetch_assoc();
         
@@ -39,7 +36,7 @@ and open the template in the editor.
         if (isset($_GET['mstatus'])){
             if ($_GET['mstatus'] != null){
                 // $changems = "UPDATE personalinformation SET married = \"" . $_POST['mstatus'] . "\" WHERE lastname LIKE \"%" . $lname . "%\" AND firstname LIKE \"%" . $fname . "%\" AND dob LIKE \"" . $dob . "\"";
-                $changems = "UPDATE PatientPersonalInfo SET married = \"" . $_GET['mstatus'] . "\" WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
+                $changems = "UPDATE patientpersonalinfo SET married = \"" . $_GET['mstatus'] . "\" WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
                 $huh = $conn->query($changems);
                 if (!$huh){
                     echo "Error: " . $changems . "<br>" . $conn->error;
@@ -49,7 +46,7 @@ and open the template in the editor.
         if (isset($_GET['address'])){
             if ($_GET['address'] != null){
                 //$changeadd = "UPDATE personalinformation SET address = \"" . $_POST['address'] . "\" WHERE lastname LIKE \"%" . $lname . "%\" AND firstname LIKE \"%" . $fname . "%\" AND dob LIKE \"" . $dob . "\"";
-                $changeadd = "UPDATE PatientPersonalInfo SET address = \"" . $_GET['address'] . "\" WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
+                $changeadd = "UPDATE patientpersonalinfo SET address = \"" . $_GET['address'] . "\" WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
                 $huh = $conn->query($changeadd);
                 if (!$huh){
                     echo "Error: " . $changeadd . "<br>" . $conn->error;
@@ -108,7 +105,7 @@ and open the template in the editor.
         }
 
         //$test = "SELECT * FROM personalinformation WHERE lastname LIKE \"%" . $lname . "%\" AND firstname LIKE \"%" . $fname . "%\" AND dob LIKE \"%" . $dob . "%\"";
-        $test = "SELECT * FROM PatientPersonalInfo WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
+        $test = "SELECT * FROM patientpersonalinfo WHERE PatientID REGEXP '[[:<:]]{$patientid}[[:>:]]'";
 
         $result = $conn->query($test);
         if ($result->num_rows > 0) {
