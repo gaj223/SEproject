@@ -21,6 +21,9 @@ if (!rs) {
 
 // Retrieve the date
 $date = $_POST["appdate"];
+if (!$date) {
+	die("You did not enter a date. Please try again.");
+}
 echo $date . "<br>";
 // Default content
 $content = 'No available times found. Try another date.';
