@@ -16,6 +16,7 @@ if (mysqli_num_rows($q) > 0) {
 	}
 }
 ?>
+<a href="../main/Login<?php echo $_SESSION['emp'] ?>.php">Home</a>
 </tbody>
 </table>
 </body>

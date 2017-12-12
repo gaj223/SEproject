@@ -5,7 +5,7 @@
 <?php
     session_start();
     header('Cache-Control: max-age=900');
-    if (isset($_GET['logout'])) {
+    if (isset($_GET['logout']) || isset($_SESSION['user']) || isset($_SESSION['passwd'])){
         session_unset();
         session_destroy();
     }
@@ -30,7 +30,7 @@
     <body>
         <h1 style="font-size:70px;"> 
             <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>  
+            EMIS <hr>
         </h1>
         <p> Welcome to EMIS, your medical home on the Web.
             With EMIS, you can connect with your doctor through a convenient, safe, and secure environment. 

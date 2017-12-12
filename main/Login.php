@@ -17,6 +17,10 @@
                 font-size:60px;
                 text-align:center;
             }
+	    p {
+		font-size:30px;
+		text-align:left;
+	    }
             
         </style>
     </head>
@@ -28,17 +32,36 @@
             // Check to see if username and password is correct
             $user = htmlentities($_POST["user"]);
             $passwrd =  htmlentities($_POST["passwrd"]);
-            
-	    if (!$user || !$passwrd) {
-		exit("Username or Password is incorrect");
-	    }
-
 	    session_start();
-	    $_SESSION['user'] = $user;
+	    
+	    if (!$user || !$passwrd) {
+		$user = $_SESSION["user"];
+		$passwrd = $_SESSION["passwd"];
+		if (!$user || !$passwrd) {
+		    echo "<h1 style='font-size:70px;textalign:left;'>"
+		    . "<img src='../Symbol.png' width='60' height='60'>"
+		    . "EMIS <hr> </h1>";
+		    echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
+		    . "<a href='Username.php'>Forgot Username?</a><br>"
+		    . "<a href='Password.php'>Forgot Password?</a><br></p>";
+		    echo "<p style=text-align:right;> <br><a href='../index.php'> Home </a><br>";
+		    exit();
+		}
+	    } else {
+	    $_SESSION["emp"] = '';
+	    $_SESSION["user"] = $user;
+	    $_SESSION["passwd"] = $passwrd;
             // check if user is in the database
             /*$patientUsr = mysqli_query($con, "SELECT Email FROM PatientLogin WHERE Email='" . $user . "'");
             if (mysqli_num_rows($patientUsr) < 1) {
-                exit("Username or Password is incorrect");
+                		    echo "<h1 style='font-size:70px;textalign:left;'>"
+		    . "<img src='../Symbol.png' width='60' height='60'>"
+		    . "EMIS <hr> </h1>";
+		    echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
+		    . "<a href='Username.php'>Forgot Username?</a><br>"
+		    . "<a href='Password.php'>Forgot Password?</a><br></p>";
+		    echo "<p style=text-align:right;> <br><a href='../index.php'> Home </a><br>";
+
             }
             
             $pass = $patientUsr->fetch_assoc();
@@ -48,7 +71,14 @@
             $patientPW = mysqli_query($con, "SELECT PassWord FROM PatientLogin WHERE Email='" . $user . "' AND PassWord='" . $passwrd . "'");
             $row = mysqli_fetch_array($patientPW);
             if ($passwrd != $row[0]) {
-                exit("Username or Password is incorrect");
+               	    echo "<h1 style='font-size:70px;textalign:left;'>"
+		    . "<img src='../Symbol.png' width='60' height='60'>"
+		    . "EMIS <hr> </h1>";
+		    echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
+		    . "<a href='Username.php'>Forgot Username?</a><br>"
+		    . "<a href='Password.php'>Forgot Password?</a><br></p>";
+		    echo "<p style=text-align:right;> <br><a href='../index.php'> Home </a><br>";
+		    exit();
             }
   
             // Get Patient's Name
@@ -60,8 +90,11 @@
             mysqli_free_result($patientPW);
             mysqli_free_result($patientUsr);
             mysqli_free_result($patientNm);
-            
+            }
         ?>
+	<h1 style="font-size:20px;text-align:right;">
+	<a href="Logout.php"> Logout</a>
+	</h1>
         <p style="font-size:30px;text-align:left;">
             Menu: <br>
             <a href="../personal/PersonalInfo.php?patientid=<?php echo $pass['patientid']; ?>"> Personal Information</a> <br>

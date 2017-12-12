@@ -47,23 +47,31 @@ Validates the employee and create the Welcome page for the employee
             //set the default client character set
             mysqli_set_charset($con, 'utf-8');
 	    session_start();
+	    $_SESSION['emp'] = "Employee";
 	    //if (! isset($_SESSION['login'])) {
 	//	$_SESSION['login'] = 1;
 
             	// Check to see if username and password is correct
             	$user = htmlentities($_POST["user2"]);
             	$passwrd =  htmlentities($_POST["passwrd2"]);
-                $_SESSION['user'] = $user;
-		if (!$user || !$passwrd) {
+                
+	    if (!$user || !$passwrd) {
+		    $user = $_SESSION['user'];
+		    $passwrd = $_SESSION['passwd'];
+		    if (!$user || !$passwrd) {
 			echo "<h1 style='font-size:70px;textalign:left;'>"
 			. "<img src='../Symbol.png' width='60' height='60'>"
-			. "EMIS <hr> </h1>";
+			. "EMIS <hr></h1>";
 			echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
 			. "<a href='Username.php'> Forgot Username?</a><br>"
 			. "<a href='Password.php'> Forgot Password?</a><br></p>";
-			echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
+			echo "<p style=text-align:right;> <br><a href='../index.php'> Home </a><br>";
 			exit();
-		}
+		    }
+	    } else {
+		$_SESSION['user'] = $user;
+		$_SESSION['passwd'] = $passwrd;
+		
             	// check if user is in the database
             	$employeeUsr = mysqli_query($con, "SELECT FirstName FROM EmployeeLogin WHERE Email='" . $user . "'");
             	if (mysqli_num_rows($employeeUsr) < 1) {
@@ -119,12 +127,12 @@ Validates the employee and create the Welcome page for the employee
                     		echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
                             		. "<a href='Username.php'> Forgot Username?</a><br>"
                             		. "<a href='Password.php'> Forgot Password? </a><br></p>";
-                    			echo "<p style = text-align:right;> <br><a href='index.php'> Home </a><br>";
+                    			echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
                 	}
                 	exit();
             	}
             	mysqli_query($con, "UPDATE EmployeeLogin SET attempts= '0' WHERE Email='" . $user . "'");
-            //}
+            }
             echo 'Welcome to EMIS, '. $firstNm ."<br/>";
             
             // Free mysql query
@@ -138,7 +146,7 @@ Validates the employee and create the Welcome page for the employee
         <h1 style="font-size:20px;text-align:right;"> 
             <a href="Logout.php"> Logout</a>
         </h1>
-        <p> 
+        <p>
             Menu: <br>
             <a href="../jamesfiles/search.php?employeeid=<?php echo $pass['EmployeeID']; ?>"> Search</a> <br>
             <a href="../createapp/create.php"> Create Appointment</a> <br>
