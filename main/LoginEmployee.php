@@ -46,24 +46,35 @@ Validates the employee and create the Welcome page for the employee
             
             //set the default client character set
             mysqli_set_charset($con, 'utf-8');
-	    if (! session_id()) session_start();
-	    else if (! isset($_SESSION['login'])) {
-		$_SESSION['login'] = 1;
-	
+	    session_start();
+	    //if (! isset($_SESSION['login'])) {
+	//	$_SESSION['login'] = 1;
+
             	// Check to see if username and password is correct
             	$user = htmlentities($_POST["user2"]);
             	$passwrd =  htmlentities($_POST["passwrd2"]);
-            
+                $_SESSION['user'] = $user;
+		if (!$user || !$passwrd) {
+			echo "<h1 style='font-size:70px;textalign:left;'>"
+			. "<img src='../Symbol.png' width='60' height='60'>"
+			. "EMIS <hr> </h1>";
+			echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
+			. "<a href='Username.php'> Forgot Username?</a><br>"
+			. "<a href='Password.php'> Forgot Password?</a><br></p>";
+			echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
+			exit();
+		}
             	// check if user is in the database
             	$employeeUsr = mysqli_query($con, "SELECT FirstName FROM EmployeeLogin WHERE Email='" . $user . "'");
             	if (mysqli_num_rows($employeeUsr) < 1) {
                 	echo "<h1 style='font-size:70px;text-align:left;'> "
-                	. "<img src='Symbol.png' width='60' height='60'>"
+                	. "<img src='../Symbol.png' width='60' height='60'>"
                         	. "EMIS <hr> </h1>";
                 	echo "<p>The Username and/or Password entered was incorrect. Please check and try again. <br>"
                         	. "<a href='Username.php'> Forgot Username?</a><br>"
                         	. "<a href='Password.php'> Forgot Password? </a><br></p>";
-                	echo "<p style = text-align:right;> <br><a href='index.php'> Home </a><br>";
+                	echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
+			exit();
             	}
             	$row = mysqli_fetch_row($employeeUsr);
             	$firstNm = $row[0];
@@ -80,7 +91,7 @@ Validates the employee and create the Welcome page for the employee
                         	. "EMIS <hr> </h1>";
                 	echo "<p> Your account has been locked. Please, contact the clinic or click the link to recovery account.<br>"
                         	    . "<a href='Password.php'> Account Recovery  </a><br></p>";
-                	echo "<p style = text-align:right;> <br><a href='index.php'> Home </a><br>";
+                	echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
                 	exit();
             	}
             
@@ -101,7 +112,7 @@ Validates the employee and create the Welcome page for the employee
                     		// Print out that account is locked
                     		echo "<p> Your account has been locked. Please, contact the clinic or click the link to recovery account.<br>"
                             	. "<a href='Password.php'> Account Recovery  </a><br></p>";
-                    		echo "<p style = text-align:right;> <br><a href='index.php'> Home </a><br>";
+                    		echo "<p style = text-align:right;> <br><a href='../index.php'> Home </a><br>";
                     
                 	}else{
                     		// Print out link back to home page and username and password recovery
@@ -113,7 +124,7 @@ Validates the employee and create the Welcome page for the employee
                 	exit();
             	}
             	mysqli_query($con, "UPDATE EmployeeLogin SET attempts= '0' WHERE Email='" . $user . "'");
-            }
+            //}
             echo 'Welcome to EMIS, '. $firstNm ."<br/>";
             
             // Free mysql query
@@ -132,7 +143,9 @@ Validates the employee and create the Welcome page for the employee
             <a href="../jamesfiles/search.php?employeeid=<?php echo $pass['EmployeeID']; ?>"> Search</a> <br>
             <a href="../createapp/create.php"> Create Appointment</a> <br>
             <a href="../createpatient/CreatePatientAccount.php"> Create a New Patient Account</a> <br>
-        </p>
+            <a href="../messaging/send_message.php">Send Message</a> <br>
+	    <a href="../messaging/messages.php">My Messages</a> <br>
+	</p>
         
     </body>
 </html>

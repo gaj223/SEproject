@@ -11,8 +11,8 @@
         
         <?php 
         
-            include 'db.emis';
-            
+            include '../include/db.emis';
+
             if ($_POST['fname'] == NULL || $_POST['lname'] == NULL || $_POST['dob'] == NULL){
                 if ($_SESSION['POST'] == null){
                     session_start();
@@ -31,7 +31,7 @@
             $employeeid = $_POST['employeeid'];
             
             // check if user is in the database
-            $patient = mysqli_query($con, "SELECT PatientID FROM patientpersonalinfo WHERE firstname REGEXP '[[:<:]]{$fname}[[:>:]]' AND lastname REGEXP '[[:<:]]{$lname}[[:>:]]' AND dob REGEXP '[[:<:]]{$dob}[[:>:]]'");
+            $patient = mysqli_query($con, "SELECT PatientID FROM PatientPersonalInfo WHERE firstname='{$fname}' AND lastname='{$lname}' AND dob='{$dob})'");
             if (mysqli_num_rows($patient) < 1) {
                 if ($_SESSION['POST'] == null){
                     session_start();
@@ -43,8 +43,8 @@
             $pass = $patient->fetch_assoc();
             
   
-            // Get Patient's Name 
-            $patientNm = mysqli_query($con, "SELECT FirstName FROM PatientPersonalInfo WHERE Email='" . $user . "'");
+            // Get Patient's Name
+            $patientNm = mysqli_query($con, "SELECT firstname FROM PatientPersonalInfo WHERE Email='" . $user . "'");
             $row = mysqli_fetch_row($patientNm);
             
         ?>
@@ -53,7 +53,7 @@
             Menu: <br>
             <a href="SearchPersonalInfo.php?patientid=<?php echo $pass['PatientID']; ?>"> Personal Information</a> <br>
             <a href="InsuranceInfo.php"> Insurance Information</a> <br>
-            <a href="Appointments.php"> Appointments</a> <br>
+            <a href="../appointments/appointment.php"> Appointments</a> <br>
         <form action="search.php" method="get">
             <input type="hidden" name="employeeid" value="<?php echo $employeeid;?>"/>
             <div><input type="submit" value="Back to Search"></div>

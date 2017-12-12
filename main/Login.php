@@ -29,6 +29,12 @@
             $user = htmlentities($_POST["user"]);
             $passwrd =  htmlentities($_POST["passwrd"]);
             
+	    if (!$user || !$passwrd) {
+		exit("Username or Password is incorrect");
+	    }
+
+	    session_start();
+	    $_SESSION['user'] = $user;
             // check if user is in the database
             /*$patientUsr = mysqli_query($con, "SELECT Email FROM PatientLogin WHERE Email='" . $user . "'");
             if (mysqli_num_rows($patientUsr) < 1) {
@@ -61,6 +67,9 @@
             <a href="../personal/PersonalInfo.php?patientid=<?php echo $pass['PatientID']; ?>"> Personal Information</a> <br>
             <a href="../insurance/InsuranceInfo.php"> Insurance Information</a> <br>
             <a href="../appointments/appointment.php"> Appointments</a> <br>
+	    <a href="../messaging/send_message.php">Send Message</a><br>
+	    <a href="../messaging/messages.php">My Messages</a><br>
+	
         </p>
         
     </body>

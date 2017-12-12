@@ -11,15 +11,15 @@
         
         $servername = "localhost";
         $username = "root";
-        $password = "1234";
-        $dbname = "emis";
+        $password = "cs3773";
+        $dbname = "EMIS";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } 
-        $safety = "SELECT * FROM employeelogin WHERE EmployeeID REGEXP '[[:<:]]{$employeeid}[[:>:]]'";
+        $safety = "SELECT * FROM EmployeeLogin WHERE EmployeeID REGEXP '[[:<:]]{$employeeid}[[:>:]]'";
         $verify = $conn->query($safety);
         $pas = $verify->fetch_assoc();
         ?>
@@ -31,7 +31,7 @@
             <input type="hidden" name="employeeid" value="<?php echo $employeeid;?>"/>
             <div><input type="submit" value="Search"/></div>
         </form>
-        <form action="LoginEmployee.php" method="post">
+        <form action="../main/LoginEmployee.php" method="post">
             <input type="hidden" name="user2" value="<?php echo $pas['Email'];?>" />
             <input type="hidden" name="passwrd2" value="<?php echo $pas['Password'];?>" />
             <div><input type="submit" value="Home"></div>

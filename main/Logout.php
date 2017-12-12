@@ -24,7 +24,7 @@
                 EMIS  <hr> 
         </h1>    
         <p> 
-            You have been logout. To ensure that you are successfully logged out, we recommend that you close all instances of your web browser. If you are using a shared or otherwise unsecure computer, 
+            You have been logged out. To ensure that you are successfully logged out, we recommend that you close all instances of your web browser. If you are using a shared or otherwise unsecure computer, 
             we recommend you log off of the computer before leaving it unattended.
         </p>
         <p>
