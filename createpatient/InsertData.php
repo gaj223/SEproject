@@ -97,7 +97,7 @@
             
         ?>
         <p style="font-size:20px;">
-            <a href="../main/LoginEmployee.php"> Back to Welcome Screen</a>
+            For security, please <a href="../index.php">logout</a>
         </p>
         
     </body>

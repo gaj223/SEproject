@@ -23,7 +23,7 @@
     <body>
         
         <?php 
-        
+            header('Cache-Control: max-age=900');
             include '../include/db.emis';
             // Check to see if username and password is correct
             $user = htmlentities($_POST["user"]);
@@ -64,7 +64,7 @@
         ?>
         <p style="font-size:30px;text-align:left;">
             Menu: <br>
-            <a href="../personal/PersonalInfo.php?patientid=<?php echo $pass['PatientID']; ?>"> Personal Information</a> <br>
+            <a href="../personal/PersonalInfo.php?patientid=<?php echo $pass['patientid']; ?>"> Personal Information</a> <br>
             <a href="../insurance/InsuranceInfo.php"> Insurance Information</a> <br>
             <a href="../appointments/appointment.php"> Appointments</a> <br>
 	    <a href="../messaging/send_message.php">Send Message</a><br>
