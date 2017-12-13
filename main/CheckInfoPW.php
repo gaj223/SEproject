@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <!--
-    Check to see if user exists and show the security questions
+    Creates the Login Page
 -->
+<?php
+    session_start();
+    header('Cache-Control: max-age=900');
+    if (isset($_GET['logout']) || isset($_SESSION['user']) || isset($_SESSION['passwd'])){
+        session_unset();
+        session_destroy();
+    }
+?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Page Title</title>
+        <title>Security Questions</title>
         <style>
-            body {
-                background-color:rgb(21, 118, 221);
-                color:white;
-                background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
-                background-position: right bottom;
-                background-repeat:no-repeat;
-                background-attachment:fixed;
-                font-size:20px;
+        		div.container {
+    				width: 100%;
+				}
+                header {
+                        font-family:helvetica;
+                        font-size: 20px;
+                        text-align:center;
+                }
+                footer {
+                        font-family:helvetica;
+                        font-size: 15px;
+                        padding: 20px;
+                        text-align:center;
+                }
+                article {
+                        font-family:helvetica;
+                        font-size: 20px;
+                        text-align: left;
+                        margin-left: 350px;
+                }
+                body {
+                        background-color:rgb(21, 118, 221);
+                        color:white;
+                        background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
+                        background-position: right bottom;
+                        background-repeat:no-repeat;
+                        background-attachment:fixed;
             }
-            
+
+            {
         </style>
     </head>
+
+    
     <body>
-        <h1 style="font-size:70px;"> 
-            <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>  
-        </h1>
-        <?php 
+    <div class="container">
+    <header>
+        <p style="text-align:center;">
+        <a href="../index.php">
+        	<img src="../emis-logo.jpg" width="250" height="150">
+        </a><br>
+        	<h2>Security Questions</h2>
+        </p>
+
+    </header>
+	<article>
+       <?php 
             //include 'include/db.emis';
             // Connect to SQL
             $host = "localhost";
@@ -46,7 +83,7 @@
             if($role2 == "Patient"){
                 $patientUsr = mysqli_query($con, "SELECT PatientID FROM PatientLogin WHERE Email='" . $user . "'");
                 if (mysqli_num_rows($patientUsr) < 1) {
-                    exit("Username does not exist");
+                    exit("ERROR:Username does not exist");
                 }
                 // Retrieve the Patient's ID
                 $row = mysqli_fetch_row($patientUsr);
@@ -56,7 +93,7 @@
             }else{
                 $employeeUsr = mysqli_query($con, "SELECT EmployeeID FROM EmployeeLogin WHERE Email='" . $user . "'");
                 if (mysqli_num_rows($employeeUsr) < 1) {
-                    exit("Username does not exist");
+                    exit("ERROR:Username does not exist");
                 }
                 // Retrieve the Patient's ID
                 $row = mysqli_fetch_row($employeeUsr);
@@ -108,6 +145,12 @@
             <div><input type="submit" value="Submit"></div>
         </form>
         
+    </article>
+    <footer>
+        <p>
+        <a href="../index.php"> Home </a>
+        </p>
+    </footer>
+    </div>
     </body>
 </html>
-

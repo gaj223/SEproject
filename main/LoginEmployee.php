@@ -153,6 +153,22 @@ Validates the employee and create the Welcome page for the employee
             <a href="../createpatient/CreatePatientAccount.php"> Create a New Patient Account</a> <br>
             <a href="../messaging/send_message.php">Send Message</a> <br>
 	    <a href="../messaging/messages.php">My Messages</a> <br>
+	    <?php
+		$sql = "SELECT permission FROM EmployeeLogin WHERE Email='{$user}'";
+		$q = mysqli_query($con, $sql);
+		$row = mysqli_fetch_row($q);
+		$permission = (int)$row[0];
+		
+		if ($permission > 2) {
+			echo '<a href="../vitals/vitals.php">Update Vitals</a><br>';
+			if ($permission > 5) {
+				echo '<a href="../medical/upload.php">Upload Patient Documents</a><br>';
+				if ($permission > 8) {
+					echo '<a href="../createemp/CreateEmployee.php">Create Employee</a><br>';
+				}
+			}
+		}
+	    ?>
 	</p>
         
     </body>

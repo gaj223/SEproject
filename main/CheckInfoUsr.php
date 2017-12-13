@@ -1,66 +1,30 @@
 <!DOCTYPE html>
 <!--
-    Creates the Login Page
+    Verify the user's information and give username
 -->
-<?php
-    session_start();
-    header('Cache-Control: max-age=900');
-    if (isset($_GET['logout']) || isset($_SESSION['user']) || isset($_SESSION['passwd'])){
-        session_unset();
-        session_destroy();
-    }
-?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>EMIS</title>
+        <title>Page Title</title>
         <style>
-        		div.container {
-    				width: 100%;
-				}
-                header {
-                        font-family:helvetica;
-                        font-size: 20px;
-                        text-align:center;
-                }
-                footer {
-                        font-family:helvetica;
-                        font-size: 15px;
-                        padding: 20px;
-                        text-align:center;
-                }
-                article {
-                        font-family:helvetica;
-                        font-size: 20px;
-                        text-align: left;
-                        margin-left: 350px;
-                }
-                body {
-                        background-color:rgb(21, 118, 221);
-                        color:white;
-                        background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
-                        background-position: right bottom;
-                        background-repeat:no-repeat;
-                        background-attachment:fixed;
+            body {
+                background-color:rgb(21, 118, 221);
+                color:white;
+                background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
+                background-position: right bottom;
+                background-repeat:no-repeat;
+                background-attachment:fixed;
+                font-size:60px;
+                text-align:center;
             }
-
-            {
+            
         </style>
     </head>
-
-    
     <body>
-    <div class="container">
-    <header>
-        <p style="text-align:center;">
-        <a href="../index.php">
-        	<img src="../emis-logo.jpg" width="250" height="150">
-        </a><br>
-        	<h2></h2>
-        </p>
-
-    </header>
-	<article>
+        <h1 style="font-size:70px;"> 
+            <img src="Symbol.png" width="60" height="60">
+            EMIS <hr>  
+        </h1>
         <?php 
             //include 'include/db.emis';
             // Connect to SQL
@@ -73,6 +37,7 @@
             if (!$con) {
                 exit('Connect Error (' . mysqli_connect_errno() . ') '
                     . mysqli_connect_error());
+            }
             }
             
             //set the default client character set
@@ -112,7 +77,6 @@
                 $row = mysqli_fetch_row($employeeInfo);   
                 
                 // Free mysql query
-            // Check to see if username and password is correct
                 mysqli_free_result($employeeInfo);
             }
             
@@ -127,15 +91,15 @@
             // Display Username
             $email = $row[2];
             echo 'Your username is '. $email."<br/>";
+
             
             
         ?>
-    </article>
-    <footer>
-        <p>
-        <a href="../index.php"> Home </a>
+        <p style="font-size:30px;text-align:left;"> 
+             <br>
+            <a href="Index.php"> Home Page</a> <br>
+            
         </p>
-    </footer>
-    </div>
+        
     </body>
 </html>
