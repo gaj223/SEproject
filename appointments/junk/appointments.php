@@ -5,10 +5,10 @@
 <?php
     session_start();
     header('Cache-Control: max-age=900');
-/*    if (isset($_GET['logout']) || isset($_SESSION['user']) || isset($_SESSION['passwd'])){
+    if (isset($_GET['logout']) || isset($_SESSION['user']) || isset($_SESSION['passwd'])){
         session_unset();
         session_destroy();
-    }*/
+    }
 ?>
 <html>
     <head>
@@ -63,7 +63,7 @@
     <div class="container">
     <header>
         <p style="text-align:right; font-size: 11px;">
-        	<a href="../main/Logout.php";>
+        	<a href="logout.php";>
         		Logout
         	</a>
         </p>
@@ -82,33 +82,17 @@
     </nav>
     <article>
         <h1> Appointments </h2>
+		<a href='../<?php session_start(); if (! $_SESSION["emp"]) { echo "main/Login.php"; } else { echo "jamesfiles/searchresults.php"; }?>'>Home</a><br>
 <?php
-/*if (!isset($_GET["patientid"]) {
-	echo '<form action="appointment.php" method="post">' .
-	'Patient or Doctor Email or SSN: <input type="text" name="id">' . 
-	'<input type="submit" value="Find" name="submit">';
-}*/
-
-
-$patientid = $_GET['patientid'];
-$con = mysqli_connect("localhost", "root", "cs3773", "EMIS");
-if (!$con) {
-	die("Couldn't connect to database");
-}
-$sql = "SELECT * FROM Appointments WHERE PatientID='{$patientid}'";
-$q = mysqli_query($con, $sql);
-$a = mysqli_fetch_array($q);
-if (!$a["date"]) {
-	echo "Looks like you don't have an appointment. Give us a call to set up an appointment!";
-} else {
-	echo $a['PatientID'] . " is set for " . $a['date'] . " at " . $a['time'] . " with " . $a['doctor_email'];
-}
+        if (! $_SESSION['emp']) {
+                echo "Looks like you don't have an appointment. Give us a call to set up an appointment!";
+        }
 ?>
 
     </article>
     <footer>
         <p>
-        <a href=<?php if (isset($_GET['patientid'])) echo "'../jamesfiles/search.php'"; else echo "'../main/Login.php'";?>> Home </a>
+        <a href="../main/login.php"> Home </a>
         </p>
     </footer>
     </div>
