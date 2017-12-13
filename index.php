@@ -13,55 +13,78 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>EMIS Login</title>
         <style>
-            body {
-                background-color:rgb(21, 118, 221);
-                color:white;
-                background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
-                background-position: right bottom;
-                background-repeat:no-repeat;
-                background-attachment:fixed;
+        	header {
+            		font-family:helvetica;
+                	font-size: 20px;
+                	padding: 20px;
+                	text-align:center;
+            	}
+		footer {
+            		font-family:helvetica;
+                	font-size: 15px;
+                	padding: 20px;
+                	text-align:center;
+		}
+           	body {
+                	font-family:helvetica;
+                	font-size: 15px;
+                	text-align: center;
+                	background-color:rgb(21, 118, 221);
+                	color:white;
+                	background-image:url("http://www.clker.com/cliparts/0/4/C/O/g/t/doctor-and-patient-blue.svg.med.png");
+                	background-position: right bottom;
+                	background-repeat:no-repeat;
+                	background-attachment:fixed;
             }
 
+            {
         </style>
-
     </head>
-    <body>
-        <h1 style="font-size:70px;"> 
-            <img src="Symbol.png" width="60" height="60">
-            EMIS <hr>
-        </h1>
-        <p> Welcome to EMIS, your medical home on the Web.
-            With EMIS, you can connect with your doctor through a convenient, safe, and secure environment. 
+    <header>
+        <p style="text-align:center;">
+        	<img src="emis-logo.jpg" width="250" height="150">
         </p>
+
+        <p>
+            Welcome to EMIS, your medical home on the Web.
+            With EMIS, you can connect with your <br>doctor through a convenient, safe, and secure environment. 
+        </p>
+    </header>
+
+    <body>
         <br>
-        <br>
-        <p style="text-align:center;"> Patient Login </p>
-        <form style="text-align:center;" action="main/Login.php" method="POST">
-            <div><label for="user">Username: 
+        <p>Patient Login</p>
+        <form action="main/Login.php" method="POST">
+            <div><label for="user">Username:
                     <input type="text" name="user" id="user"></label>
             </div>
+            <br>
             <div><label for="passwrd">Password:
                     <input type="password" name="passwrd" id="passwrd"></label>
             </div>
             <div><input type="submit" value="LOG IN"></div>
         </form>
-
-        <p style="text-align:center;"> Employee Login </p>
-        <form style="text-align:center;" action="main/LoginEmployee.php" method="POST">
+        	<br>
+           <p> Employee Login </p>
+        <form action="main/LoginEmployee.php" method="POST">
             <div><label for="user2">Username: 
                     <input type="text" name="user2" id="user"></label>
             </div>
+            <br>
             <div><label for="passwrd2">Password:
                     <input type="password" name="passwrd2" id="passwrd"></label>
             </div>
             <div><input type="submit" value="LOG IN"></div>
         </form>
-        <p style="text-align:center;">
+	</body>
+
+    <footer>
+            <p>
             <a href="main/Username.php"> Forgot Username?</a>
-            <br>
+			|
             <a href="main/Password.php"> Forgot Password?</a>
         </p>
-    </body>
+    </footer>
 </html>

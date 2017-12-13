@@ -54,6 +54,18 @@
             <a href="SearchPersonalInfo.php?patientid=<?php echo $pass['PatientID']; ?>"> Personal Information</a> <br>
             <a href="InsuranceInfo.php"> Insurance Information</a> <br>
             <a href="../appointments/appointment.php"> Appointments</a> <br>
+	    <?php
+		$sql = "SELECT * FROM EmployeeLogin WHERE Email='".$_SESSION['user']."';";
+		$q = mysqli_query($con, $sql);
+		$a = mysqli_fetch_array($q);
+		$permission = $a['permission'];
+		if ($permission > 2) {
+			echo "<a href='../vitals/vital_history.php?patientid=" . $pass['PatientID'] . "'>Vital History</a><br>";
+			if ($permission > 5) {
+				echo "<a href='../uploads/view.php?patientid=" . $pass['PatientID'] . "'>Medical Documents</a><br>";
+			}
+		}
+	    ?>
         <form action="search.php" method="get">
             <input type="hidden" name="employeeid" value="<?php echo $employeeid;?>"/>
             <div><input type="submit" value="Back to Search"></div>

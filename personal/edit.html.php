@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body style="font-family:verdana; background-color:rgb(8, 133, 229);color:White;font-size:15px;">
         <?php
         if (isset($_POST['patientid'])){
         //echo $_POST['patientid'];

@@ -77,7 +77,7 @@
 		die('Could not insert Personal Information: ' . mysqli_error($con));
             }
             // enter Insurance information
-            $sql = "INSERT INTO PatientInsuranceInfo VALUES ('{$ID}', '{$group}', '{$company}');";
+            $sql = "INSERT INTO PatientInsuranceInfo VALUES ('{$ID}', '{$group}', '{$company}', '{$user}');";
             $insurance = mysqli_query($con, $sql);
             if (!$insurance) {
 		die('Could not insert Insurance Information: ' . mysqli_error($con));

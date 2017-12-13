@@ -39,7 +39,6 @@ if (isSet($_POST['sendMessage'])) {
 	}
 }
 ?>
-
 <a href="../main/Login<?php echo $_SESSION['emp']?>.php">Home</a>
 </body>
 </html>

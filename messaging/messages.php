@@ -7,7 +7,7 @@
 $con = mysqli_connect('localhost', 'root', 'cs3773', 'EMIS');
 session_start();
 $user = $_SESSION['user'];
-echo $user . ':<br>';
+//echo $user . ':<br>';
 echo '<tr><td>From<hr></td></td><td></td><td>Message<hr></td></tr>';
 $q = mysqli_query($con, "SELECT * FROM ms WHERE send_to='{$user}'");
 if (mysqli_num_rows($q) > 0) {
@@ -16,7 +16,7 @@ if (mysqli_num_rows($q) > 0) {
 	}
 }
 ?>
-<a href="../main/Login<?php echo $_SESSION['emp'] ?>.php">Home</a>
+<a href="../main/Login<?php echo $_SESSION['emp'] ?>.php">Home</a><br>
 </tbody>
 </table>
 </body>

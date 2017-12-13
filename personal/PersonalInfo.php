@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Page Title</title>
     </head>
-    <body style="background-color:rgb(8, 133, 229);color:White;font-size:30px;">
+    <body style="font-family:verdana;background-color:rgb(8, 133, 229);color:White;font-size:30px;">
         <h1 style="color:White;font-size:60px;">Personal Information</h1>
         
         <?php
@@ -27,6 +27,12 @@ and open the template in the editor.
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         } 
+	session_start();
+	$user = $_SESSION['user'];
+	$sql = "SELECT PatientID FROM PatientPersonalInfo WHERE Email='{$user}'";
+	$q = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_array($q);
+	$patientid = $row['PatientID'];
 
         $safety = "SELECT * FROM PatientPersonalInfo WHERE PatientID='{$patientid}'";
         $verify = $conn->query($safety);
@@ -56,7 +62,7 @@ and open the template in the editor.
         if (isset($_GET['email'])){
             if ($_GET['email'] != null){
                 //$changeem = "UPDATE personalinformation SET email = \"" . $_POST['email'] . "\" WHERE lastname LIKE \"%" . $lname . "%\" AND firstname LIKE \"%" . $fname . "%\" AND dob LIKE \"" . $dob . "\"";
-                $changeem = "UPDATE PatientPersonalInfo SET email = \"" . $_GET['email'] . "\" WHERE PatientID='{$patientid}'";
+                $changeem = "UPDATE PatientPersonalInfo SET Email = \"" . $_GET['email'] . "\" WHERE PatientID='{$patientid}'";
                 $huh = $conn->query($changeem);
                 if (!$huh){
                     echo "Error: " . $changeem . "<br>" . $conn->error;
@@ -111,17 +117,17 @@ and open the template in the editor.
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                echo "First Name: " . $row["firstname"] . "<br>" . 
+                echo "First Name: " . $row["firstname"] . "<br>" .
                      "Last Name: " . $row["lastname"] . "<br>" .
                      "D.O.B: " . $row["dob"] . "<br>" .
                      "Gender: " . $row["gender"] . "<br>" .
-                     "Marital Status: " . $row["married"] . "<br>" .
+                     "Marital Status: " . $row["mstatus"] . "<br>" .
                      "Address: " . $row["address"] . "<br>" .
-                     "E-mail: " . $row["email"] . "<br>" .
-                     "Phone Number: " . $row["phonenumber"] . "<br>" .
+                     "E-mail: " . $row["Email"] . "<br>" .
+                     "Phone Number: " . $row["phone"] . "<br>" .
                      "S.S.N: " . $row["ssn"] . "<br>" .
                      "Emergency Contact Name: " . $row["ecname"] . "<br>" .
-                     "Emergency Contact Phone Number: " . $row["ecphonenumber"] . "<br>" .
+                     "Emergency Contact Phone Number: " . $row["ecphone"] . "<br>" .
                      "Emergency Contact Relation: " . $row["ecrelation"] . "<br>";
             }
         } else {
@@ -132,7 +138,7 @@ and open the template in the editor.
             <input type="hidden" name="patientid" value="<?php echo $patientid;?>"/>
             <div><input type="submit" value="Edit"/></div>
         </form>
-        <form action="Login.php" method="post">
+        <form action="../main/Login.php" method="post">
             <input type="hidden" name="user" value="<?php echo $pas['Email'];?>" />
             <input type="hidden" name="passwrd" value="<?php echo $pas['PassWord'];?>" />
             <div><input type="submit" value="Home"></div>

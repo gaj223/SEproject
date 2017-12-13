@@ -163,6 +163,7 @@ Validates the employee and create the Welcome page for the employee
 			echo '<a href="../vitals/vitals.php">Update Vitals</a><br>';
 			if ($permission > 5) {
 				echo '<a href="../medical/upload.php">Upload Patient Documents</a><br>';
+				echo '<a href="../uploads/view.php">View Patient Documents</a><br>';
 				if ($permission > 8) {
 					echo '<a href="../createemp/CreateEmployee.php">Create Employee</a><br>';
 				}

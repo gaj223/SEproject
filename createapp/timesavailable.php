@@ -70,7 +70,7 @@ mysqli_close($mysqli);
 
 <form action="action_page.php" method="post">
 Set up an appointment<br>
-email: <input name="email" type="text">
+Email or SSN: <input name="email" type="text">
 Desired Time: <select name="time">
         <option value="9:00 A.M.">9:00 A.M.</option>
         <option value="10:00 A.M.">10:00 A.M.</option>
@@ -83,7 +83,6 @@ Desired Time: <select name="time">
 </select>
 <input type="submit" value="Submit">
 <br>
-<a href="man.php">No email?</a>
 </form>
 </body>
 </html>
