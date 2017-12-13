@@ -28,6 +28,7 @@ if(!$con) {
 	die("Failed to connect to database.");
 }
 //$patientid = $_POST['id'];
+
 $sql = "SELECT * FROM PatientLogin WHERE PatientID='{$patientid}'";
 $q = mysqli_query($con, $sql);
 $a = mysqli_fetch_array($q);
