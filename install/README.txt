@@ -16,3 +16,11 @@ I am sorry for the inconvenience this may cause.
 There will be only one user on first start. Use the employee login under
 admin (password is also admin) to create accounts.
 
+
+Uploaded files (see SEproject/medical/) need permission to upload.
+Files uploaded are sent to /tmp/. To move them to SEproject/uploads/ may require chmod, chgrp, and chown.
+Try the following:
+> sudo chgrp "www-data" /var/www/html/SEproject/uploads
+> sudo chown g+w /var/www/html/SEproject/uploads
+
+

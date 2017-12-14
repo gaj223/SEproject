@@ -13,6 +13,8 @@ $q = mysqli_query($con, "CREATE DATABASE EMIS;");
 if (!q) {
 	die("Failed to create database");
 }
+
+mysqli_select_db($con, "EMIS");
 // Create Appointments table
 $q = mysqli_query($con, "CREATE TABLE Appointments(doctor_email varchar(50), date varchar(35), time varchar(50), PatientID varchar(50))");
 if (!q) {
